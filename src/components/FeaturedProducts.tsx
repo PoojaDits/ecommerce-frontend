@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
@@ -47,3 +48,5 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ addToCart }) => {
 }
 
 export default FeaturedProducts
+=======
+>>>>>>> 175b35fbe8d0b77892107ee669b40feb90e0ebce
