@@ -12,7 +12,7 @@ const featuredProducts: Product[] = [
     originalPrice: 99.99,
     rating: 4,
     reviews: 128,
-    emoji: '🎧',
+    image: '/images/premium_wireless_headphones.png',
     badge: 'Sale',
   },
   {
@@ -22,7 +22,7 @@ const featuredProducts: Product[] = [
     price: 59.99,
     rating: 5,
     reviews: 245,
-    emoji: '👟',
+    image: '/images/running_shoes.png',
     badge: 'New',
   },
   {
@@ -33,7 +33,7 @@ const featuredProducts: Product[] = [
     originalPrice: 199.99,
     rating: 4,
     reviews: 87,
-    emoji: '⌚',
+    image: '/images/smartwatch.png',
     badge: 'Hot',
   },
   {
@@ -44,7 +44,7 @@ const featuredProducts: Product[] = [
     originalPrice: 69.99,
     rating: 4,
     reviews: 411,
-    emoji: '☕',
+    image: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&q=80',
     badge: 'Sale',
   },
 ]

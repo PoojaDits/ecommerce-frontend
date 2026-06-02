@@ -10,7 +10,7 @@ export interface Product {
   originalPrice?: number;
   rating: number;
   reviews: number;
-  emoji: string;
+  image: string;
   badge?: string;
   description?: string;
 }
