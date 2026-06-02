@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
       onClick={() => navigate(`${basePath}/product/${product.id}`)}
     >
       <div className="h-[140px] md:h-[200px] bg-muted/30 flex items-center justify-center relative overflow-hidden">
-        <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+        <img src={product.image} alt={product.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
 
         {product.badge && (
           <Badge className="absolute top-2 left-2 px-2 py-0 text-[0.65rem] font-bold">
@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
 
         <Button
           className="w-full md:w-auto font-semibold text-white border-0 rounded-full mt-4"
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.stopPropagation()
             addToCart({ ...product, quantity: 1 })
           }}

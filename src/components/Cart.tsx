@@ -48,7 +48,7 @@ const Cart: React.FC<CartProps> = ({
                 className="flex gap-2.5 py-2.5 border-b border-[#eee] items-center"
               >
                 <div className="w-11 h-11 bg-[#f5f5f5] rounded-lg overflow-hidden flex-shrink-0">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  <img src={item.image} alt={item.name} loading="lazy" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
                   <p className="text-[0.85rem] font-bold m-0">{item.name}</p>

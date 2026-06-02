@@ -3,200 +3,11 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import type { Product, Category, CartProduct } from '@/types'
 import { usePagination } from '@/hooks/usePagination'
+import { products as importedProducts } from '@/data/products'
+const displayedProducts = importedProducts.slice(0, 32);
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Wireless Headphones',
-    category: 'Electronics',
-    price: 79.99,
-    originalPrice: 99.99,
-    rating: 4,
-    reviews: 128,
-    image: '/images/premium_wireless_headphones.png',
-    badge: 'Sale',
-  },
-  {
-    id: 2,
-    name: 'Running Sneakers',
-    category: 'Footwear',
-    price: 59.99,
-    rating: 5,
-    reviews: 245,
-    image: '/images/running_shoes.png',
-    badge: 'New',
-  },
-  {
-    id: 3,
-    name: 'Smart Watch',
-    category: 'Electronics',
-    price: 149.99,
-    originalPrice: 199.99,
-    rating: 4,
-    reviews: 87,
-    image: '/images/smartwatch.png',
-    badge: 'Hot',
-  },
-  {
-    id: 4,
-    name: 'Leather Backpack',
-    category: 'Accessories',
-    price: 89.99,
-    rating: 4,
-    reviews: 63,
-    image: '/images/leather_backpack.png',
-  },
-  {
-    id: 5,
-    name: 'Sunglasses',
-    category: 'Accessories',
-    price: 34.99,
-    originalPrice: 49.99,
-    rating: 3,
-    reviews: 192,
-    image: '/images/aviator_sunglasses.png',
-    badge: 'Sale',
-  },
-  {
-    id: 6,
-    name: 'Mechanical Keyboard',
-    category: 'Electronics',
-    price: 119.99,
-    rating: 5,
-    reviews: 304,
-    image: '/images/mechanical_keyboard.png',
-    badge: 'New',
-  },
-  {
-    id: 7,
-    name: 'Coffee Maker',
-    category: 'Kitchen',
-    price: 49.99,
-    originalPrice: 69.99,
-    rating: 4,
-    reviews: 411,
-    image: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&q=80',
-    badge: 'Sale',
-  },
-  {
-    id: 8,
-    name: 'Yoga Mat',
-    category: 'Sports',
-    price: 29.99,
-    rating: 5,
-    reviews: 155,
-    image: 'https://images.unsplash.com/photo-1599447372297-f584fbf3f5df?w=800&q=80',
-  },
-  {
-    id: 9,
-    name: 'Action Camera',
-    category: 'Electronics',
-    price: 199.99,
-    rating: 5,
-    reviews: 320,
-    image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&q=80',
-    badge: 'Hot',
-  },
-  {
-    id: 10,
-    name: 'Running Shorts',
-    category: 'Sports',
-    price: 24.99,
-    rating: 4,
-    reviews: 88,
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
-  },
-  {
-    id: 11,
-    name: 'Noise Cancelling Earbuds',
-    category: 'Electronics',
-    price: 129.99,
-    rating: 4,
-    reviews: 415,
-    image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&q=80',
-  },
-  {
-    id: 12,
-    name: 'Digital Blender',
-    category: 'Kitchen',
-    price: 89.99,
-    rating: 5,
-    reviews: 210,
-    image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=800&q=80',
-  },
-  {
-    id: 13,
-    name: 'Casual Loafers',
-    category: 'Footwear',
-    price: 69.99,
-    rating: 3,
-    reviews: 45,
-    image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80',
-  },
-  {
-    id: 14,
-    name: 'Minimalist Watch',
-    category: 'Accessories',
-    price: 110.00,
-    rating: 4,
-    reviews: 99,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80',
-  },
-  {
-    id: 15,
-    name: 'Dumbbell Set',
-    category: 'Sports',
-    price: 55.00,
-    rating: 5,
-    reviews: 280,
-    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&q=80',
-  },
-  {
-    id: 16,
-    name: 'Electric Kettle',
-    category: 'Kitchen',
-    price: 35.50,
-    rating: 4,
-    reviews: 130,
-    image: 'https://images.unsplash.com/photo-1594213114663-d94eb9a0225d?w=800&q=80',
-  },
-  {
-    id: 17,
-    name: 'Gaming Mouse',
-    category: 'Electronics',
-    price: 45.99,
-    rating: 4,
-    reviews: 550,
-    image: 'https://images.unsplash.com/photo-1615663245857-3205b90b1328?w=800&q=80',
-  },
-  {
-    id: 18,
-    name: 'Crossbody Bag',
-    category: 'Accessories',
-    price: 49.99,
-    rating: 5,
-    reviews: 112,
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80',
-  },
-  {
-    id: 19,
-    name: 'Hiking Boots',
-    category: 'Footwear',
-    price: 130.00,
-    rating: 4,
-    reviews: 77,
-    image: 'https://images.unsplash.com/photo-1520639888713-7851133b1ed0?w=800&q=80',
-  },
-  {
-    id: 20,
-    name: 'Protein Shaker',
-    category: 'Sports',
-    price: 15.00,
-    rating: 3,
-    reviews: 205,
-    image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=800&q=80',
-  },
-]
+const products: Product[] = importedProducts;
+
 
 const categories: Category[] = [
   'All',
@@ -262,12 +73,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   const filtered =
     activeCategory === 'All'
-      ? products
-      : products.filter((p) => p.category === activeCategory)
+      ? displayedProducts
+      : displayedProducts.filter((p) => p.category === activeCategory)
 
   const { currentData, currentPage, maxPage, next, prev, jump } = usePagination({
     data: filtered,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     initialPage: 1,
   })
 
@@ -291,11 +102,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         {categories.map((cat) => (
           <button
             key={cat}
-            className={`px-4 py-1.5 border border-black/30 rounded-full text-[0.8rem] font-semibold cursor-pointer ${
-              activeCategory === cat
-                ? 'bg-[#e94560] text-white border-[#e94560]'
-                : 'bg-white/10 text-gray-300 hover:bg-white/20'
-            }`}
+            className={`px-4 py-1.5 border border-black/30 rounded-full text-[0.8rem] font-semibold cursor-pointer ${activeCategory === cat
+              ? 'bg-[#e94560] text-white border-[#e94560]'
+              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+              }`}
             onClick={() => handleFilterClick(cat)}
           >
             {cat}
@@ -309,7 +119,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         </p>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-3 max-w-[1200px] mx-auto md:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] md:gap-[25px]">
+          <div className="grid grid-cols-3 gap-4 max-w-[1200px] mx-auto">
             {currentData.map((product) => (
               <ProductCard
                 key={product.id}
@@ -334,11 +144,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                   <button
                     key={idx}
                     onClick={() => jump(idx + 1)}
-                    className={`w-10 h-10 rounded flex items-center justify-center transition-colors flex-shrink-0 ${
-                      currentPage === idx + 1
-                        ? 'bg-[#e94560] text-white font-bold'
-                        : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                    }`}
+                    className={`w-10 h-10 rounded flex items-center justify-center transition-colors flex-shrink-0 ${currentPage === idx + 1
+                      ? 'bg-[#e94560] text-white font-bold'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
                   >
                     {idx + 1}
                   </button>

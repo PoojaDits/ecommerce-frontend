@@ -2,56 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import type { Product, CartProduct } from '@/types'
+import { products as allProducts } from '@/data/products'
 
-const featuredProducts: Product[] = [
-  {
-    id: 1,
-    name: 'Wireless Headphones',
-    category: 'Electronics',
-    price: 79.99,
-    originalPrice: 99.99,
-    rating: 4,
-    reviews: 128,
-    image: '/images/premium_wireless_headphones.png',
-    badge: 'Sale',
-  },
-  {
-    id: 2,
-    name: 'Running Sneakers',
-    category: 'Footwear',
-    price: 59.99,
-    rating: 5,
-    reviews: 245,
-    image: '/images/running_shoes.png',
-    badge: 'New',
-  },
-  {
-    id: 3,
-    name: 'Smart Watch',
-    category: 'Electronics',
-    price: 149.99,
-    originalPrice: 199.99,
-    rating: 4,
-    reviews: 87,
-    image: '/images/smartwatch.png',
-    badge: 'Hot',
-  },
-  {
-    id: 7,
-    name: 'Coffee Maker',
-    category: 'Kitchen',
-    price: 49.99,
-    originalPrice: 69.99,
-    rating: 4,
-    reviews: 411,
-    image: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&q=80',
-    badge: 'Sale',
-  },
-]
 
-interface FeaturedProductsProps {
-  addToCart: (product: CartProduct) => void
-}
 
 const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ addToCart }) => {
   return (
