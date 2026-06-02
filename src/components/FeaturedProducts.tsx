@@ -1,11 +1,14 @@
-<<<<<<< HEAD
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import type { Product, CartProduct } from '@/types'
 import { products as allProducts } from '@/data/products'
 
+interface FeaturedProductsProps {
+  addToCart: (product: CartProduct) => void
+}
 
+const featuredProducts: Product[] = allProducts.slice(0, 8)
 
 const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ addToCart }) => {
   return (
@@ -48,5 +51,3 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ addToCart }) => {
 }
 
 export default FeaturedProducts
-=======
->>>>>>> 175b35fbe8d0b77892107ee669b40feb90e0ebce

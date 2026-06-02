@@ -23,7 +23,7 @@ const normaliseCategory = (value: string | undefined): Category => {
   try {
     v = decodeURIComponent(value)
   } catch {
-    /* ignore bad encoding */
+    
   }
   const match = categories.find(
     (c) => c.toLowerCase() === String(v).toLowerCase()
@@ -74,20 +74,20 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       ? products
       : products.filter((p) => p.category === activeCategory)
 
-  // Infinite scroll state
+  
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE)
   const [isLoading, setIsLoading] = useState(false)
   const [hasMore, setHasMore] = useState(filtered.length > ITEMS_PER_PAGE)
   const sentinelRef = useRef<HTMLDivElement | null>(null)
   const loadingRef = useRef(false)
 
-  // Reset when category changes
+  
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE)
     setHasMore(filtered.length > ITEMS_PER_PAGE)
   }, [activeCategory, filtered.length])
 
-  // Intersection Observer for infinite scroll
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -166,7 +166,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             ))}
           </div>
 
-          {/* Sentinel element for infinite scroll */}
+          
           {hasMore && (
             <div ref={sentinelRef} className="flex justify-center items-center py-8">
               {isLoading && (
